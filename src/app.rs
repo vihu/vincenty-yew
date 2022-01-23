@@ -79,6 +79,9 @@ impl Component for App {
                     <div>
                         {self.row_text()}
                     </div>
+                    <div class="footnote">
+                        {"Calculated using vincenty algorithm"}
+                    </div>
                 </div>
             </main>
         }

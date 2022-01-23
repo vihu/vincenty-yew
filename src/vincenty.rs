@@ -18,7 +18,7 @@ impl FromStr for GeoCoordinate {
     type Err = std::string::ParseError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let (src, dst) = s.split_once(",").expect("Incorrect format!");
+        let (src, dst) = s.trim().split_once(",").expect("Incorrect format!");
 
         Ok(GeoCoordinate {
             lat: src.trim().parse().unwrap(),
