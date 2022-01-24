@@ -1,5 +1,6 @@
 use crate::text_input::{C1Input, C2Input};
 use crate::vincenty;
+use std::str::FromStr;
 use yew::prelude::*;
 
 pub enum Msg {
@@ -15,10 +16,12 @@ pub struct App {
 
 impl App {
     fn get_distance(&self) -> String {
-        match vincenty::calc_distance(self.c1.clone(), self.c2.clone()) {
-            Ok(Some(dist)) => format!("Distance = {:?} Km", dist),
-            Ok(None) => "None!".to_string(),
-            Err(_) => "Boom!".to_string(),
+        let gc1 = vincenty::GeoCoordinate::from_str(self.c1.as_str()).expect("unable to parse");
+        let gc2 = vincenty::GeoCoordinate::from_str(self.c2.as_str()).expect("unable to parse");
+
+        match vincenty::distance(&gc1, &gc2) {
+            Some(dist) => format!("Distance = {:?} Km", dist),
+            None => "None!".to_string(),
         }
     }
 
