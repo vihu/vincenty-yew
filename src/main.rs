@@ -3,7 +3,6 @@
 mod text_input;
 
 mod app;
-mod vincenty;
 
 use app::App;
 

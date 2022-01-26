@@ -6,13 +6,13 @@ use web_sys::InputEvent;
 use yew::prelude::*;
 
 #[derive(Clone, PartialEq, Properties)]
-pub struct C1Props {
+pub struct SrcProps {
     pub value: String,
     pub on_change1: Callback<String>,
 }
 
 #[derive(Clone, PartialEq, Properties)]
-pub struct C2Props {
+pub struct DstProps {
     pub value: String,
     pub on_change2: Callback<String>,
 }
@@ -26,9 +26,9 @@ fn get_value_from_input_event(e: InputEvent) -> String {
 }
 
 /// Controlled Text Input Component
-#[function_component(C1Input)]
-pub fn c1_input(props: &C1Props) -> Html {
-    let C1Props { value, on_change1 } = props.clone();
+#[function_component(SrcInput)]
+pub fn src_input(props: &SrcProps) -> Html {
+    let SrcProps { value, on_change1 } = props.clone();
 
     let oninput = Callback::from(move |input_event: InputEvent| {
         on_change1.emit(get_value_from_input_event(input_event));
@@ -40,9 +40,9 @@ pub fn c1_input(props: &C1Props) -> Html {
 }
 
 /// Controlled Text Input Component
-#[function_component(C2Input)]
-pub fn c2_input(props: &C2Props) -> Html {
-    let C2Props { value, on_change2 } = props.clone();
+#[function_component(DstInput)]
+pub fn dst_input(props: &DstProps) -> Html {
+    let DstProps { value, on_change2 } = props.clone();
 
     let oninput = Callback::from(move |input_event: InputEvent| {
         on_change2.emit(get_value_from_input_event(input_event));
